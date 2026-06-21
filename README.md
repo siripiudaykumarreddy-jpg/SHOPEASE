@@ -9,6 +9,10 @@ A complete e-commerce platform built with Spring Boot, React, and MySQL — feat
 
 ## 📸 Screenshots
 
+### Category Browsing
+
+![Category Browsing](screenshots/categories.png)
+
 ### Product Catalog
 
 ![Product Catalog](screenshots/products.png)
