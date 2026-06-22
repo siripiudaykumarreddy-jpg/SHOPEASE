@@ -327,23 +327,6 @@ ecommerce-frontend/
 
 ---
 
-## 🔭 Future Improvements
-
-This project was scoped for a working, secure, demoable product rather than a full production deployment. The following were deliberately left out and are the natural next steps:
-
-| Area | What it would add |
-| --- | --- |
-| **Unit & integration tests** (JUnit, Mockito) | Automated proof of correctness instead of manual Postman verification |
-| **Swagger / OpenAPI** | Self-documenting, interactive API docs |
-| **Docker** | Reproducible environment, one-command local setup |
-| **CI/CD (GitHub Actions)** | Automated build/test on every push |
-| **Redis caching** | Reduce DB load on frequently-read endpoints like product listing |
-| **Image upload (Cloudinary / AWS S3)** | Replace placeholder image URLs with real user-uploaded product photos |
-| **Low-stock alerts** | Notify admins when inventory drops below a threshold |
-| **AWS deployment (EC2 + RDS)** | Move from local-only to a publicly accessible, persistently hosted app |
-
----
-
 ## 📄 License
 
 This project was built for educational and portfolio purposes.
