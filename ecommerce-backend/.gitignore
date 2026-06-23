@@ -1,4 +1,4 @@
-HELP.md
+C:\Program Files\Java\jdk-26echo %JAVA_HOME%HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
