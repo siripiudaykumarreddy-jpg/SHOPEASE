@@ -2,36 +2,10 @@
 
 A complete e-commerce platform built with Spring Boot, React, and MySQL — featuring JWT authentication, role-based access control, Razorpay payment integration, concurrency-safe order processing, and a full admin dashboard.
 
-🔗 **Live Demo:** _coming soon_
-📦 **Backend Repo:** [github.com/siripiudaykumarreddy-jpg](https://github.com/siripiudaykumarreddy-jpg)
-
----
-
-## 📸 Screenshots
-
-### Category Browsing
-
-![Category Browsing](screenshots/categories.png)
-
-### Product Catalog
-
-![Product Catalog](screenshots/products.png)
-
-### Shopping Cart
-
-![Shopping Cart](screenshots/cart.png)
-
-### Checkout
-
-![Checkout](screenshots/checkout.png)
-
-### Razorpay Payment
-
-![Payment Gateway](screenshots/payment.png)
-
-### Order History
-
-![Order History](screenshots/orders.png)
+🌐 **Live Frontend:** [resplendent-cucurucho-2c6023.netlify.app](https://resplendent-cucurucho-2c6023.netlify.app)
+⚙️ **Live API:** [3.110.141.77:8080](http://3.110.141.77:8080)
+📖 **Swagger Docs:** [3.110.141.77:8080/swagger-ui/index.html](http://3.110.141.77:8080/swagger-ui/index.html)
+📦 **GitHub:** [github.com/siripiudaykumarreddy-jpg/SHOPEASE](https://github.com/siripiudaykumarreddy-jpg/SHOPEASE)
 
 ---
 
@@ -101,7 +75,7 @@ A complete e-commerce platform built with Spring Boot, React, and MySQL — feat
            │
            ▼
 ┌──────────────────────┐
-│      MySQL DB        │
+│    AWS RDS MySQL     │
 └──────────────────────┘
 
 External Integration:
@@ -114,67 +88,14 @@ External Integration:
 
 ---
 
-## 🔄 Application Workflow
+## ☁️ Deployment
 
-### Customer Workflow
-
-```text
-User Registration/Login
-          │
-          ▼
-     Browse Products
-          │
-          ▼
-      Add to Cart
-          │
-          ▼
-        Checkout
-          │
-          ▼
- Create Razorpay Order
-          │
-          ▼
-    Complete Payment
-          │
-          ▼
- Verify Payment Signature
-          │
-          ▼
-       Place Order
-          │
-          ▼
-      Update Stock
-          │
-          ▼
-    View Order History
-```
-
-### Admin Workflow
-
-```text
-      Admin Login
-           │
-           ▼
-    Manage Products
-           │
-           ▼
-      View Orders
-           │
-           ▼
-   Update Order Status
-           │
-           ▼
-        Pending
-           │
-           ▼
-       Confirmed
-           │
-           ▼
-        Shipped
-           │
-           ▼
-       Delivered
-```
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Netlify |
+| Backend | AWS EC2 (t3.micro, Ubuntu) |
+| Database | AWS RDS MySQL |
+| API Docs | Swagger / SpringDoc OpenAPI |
 
 ---
 
@@ -191,6 +112,7 @@ User Registration/Login
 * JWT (jjwt)
 * Spring Retry
 * Razorpay Java SDK
+* SpringDoc OpenAPI (Swagger)
 
 ### Frontend
 
@@ -200,9 +122,11 @@ User Registration/Login
 * Axios
 * Tailwind CSS v4
 
-### Database
+### Infrastructure
 
-* MySQL
+* AWS EC2
+* AWS RDS MySQL
+* Netlify
 
 ---
 
@@ -220,8 +144,8 @@ User Registration/Login
 ### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/siripiudaykumarreddy-jpg/SHOPEASE.git
+cd SHOPEASE
 ```
 
 ### 2. Create Database
@@ -238,11 +162,11 @@ cd ecommerce-backend
 
 Configure the following environment variables:
 
-| Variable            | Description          |
-| -------------------- | -------------------- |
-| DB_PASSWORD          | MySQL Password        |
-| RAZORPAY_KEY_ID       | Razorpay Key ID       |
-| RAZORPAY_KEY_SECRET   | Razorpay Key Secret   |
+| Variable | Description |
+|----------|-------------|
+| DB_PASSWORD | MySQL Password |
+| RAZORPAY_KEY_ID | Razorpay Key ID |
+| RAZORPAY_KEY_SECRET | Razorpay Key Secret |
 
 Run the backend:
 
@@ -250,11 +174,7 @@ Run the backend:
 mvn spring-boot:run
 ```
 
-Backend runs at:
-
-```text
-http://localhost:8080
-```
+Backend runs at `http://localhost:8080`
 
 ### 4. Frontend Setup
 
@@ -264,22 +184,16 @@ npm install
 npm run dev
 ```
 
-Frontend runs at:
-
-```text
-http://localhost:5173
-```
+Frontend runs at `http://localhost:5173`
 
 ---
 
 ## 👨‍💼 Admin Setup
 
-Register a normal user and promote the account to ADMIN:
+Register a normal user and promote to ADMIN:
 
 ```sql
-UPDATE users
-SET role = 'ADMIN'
-WHERE email = 'your-email@example.com';
+UPDATE users SET role = 'ADMIN' WHERE email = 'your-email@example.com';
 ```
 
 ---
@@ -307,23 +221,23 @@ ecommerce-frontend/
 
 ## 🔑 Key API Endpoints
 
-| Method | Endpoint                       | Access        |
-| ------ | -------------------------------- | ------------- |
-| POST   | /api/auth/register                | Public        |
-| POST   | /api/auth/login                    | Public        |
-| GET    | /api/categories                    | Public        |
-| GET    | /api/products                      | Public        |
-| POST   | /api/products                      | Admin         |
-| PUT    | /api/products/{id}                 | Admin         |
-| DELETE | /api/products/{id}                 | Admin         |
-| POST   | /api/orders                        | Authenticated |
-| GET    | /api/orders/my-orders              | Authenticated |
-| GET    | /api/orders                        | Admin         |
-| PUT    | /api/orders/{id}/status            | Admin         |
-| POST   | /api/payments/create-order         | Authenticated |
-| POST   | /api/payments/verify               | Authenticated |
-| POST   | /api/reviews                       | Authenticated |
-| GET    | /api/reviews/product/{productId}   | Public        |
+| Method | Endpoint | Access |
+|--------|----------|--------|
+| POST | /api/auth/register | Public |
+| POST | /api/auth/login | Public |
+| GET | /api/categories | Public |
+| GET | /api/products | Public |
+| POST | /api/products | Admin |
+| PUT | /api/products/{id} | Admin |
+| DELETE | /api/products/{id} | Admin |
+| POST | /api/orders | Authenticated |
+| GET | /api/orders/my-orders | Authenticated |
+| GET | /api/orders | Admin |
+| PUT | /api/orders/{id}/status | Admin |
+| POST | /api/payments/create-order | Authenticated |
+| POST | /api/payments/verify | Authenticated |
+| POST | /api/reviews | Authenticated |
+| GET | /api/reviews/product/{productId} | Public |
 
 ---
 
@@ -337,9 +251,9 @@ This project was built for educational and portfolio purposes.
 
 ### Siripi Uday Kumar Reddy
 
-Full-Stack Developer
+Backend Developer
 
 [![GitHub](https://img.shields.io/badge/GitHub-siripiudaykumarreddy--jpg-181717?logo=github)](https://github.com/siripiudaykumarreddy-jpg)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Uday%20Reddy-0A66C2?logo=linkedin)](https://www.linkedin.com/in/udayreddy83483/)
 
-Built using Spring Boot, React, MySQL, JWT Authentication, Razorpay Integration, Spring Security, and modern backend engineering practices.
+Built using Spring Boot, React, MySQL, JWT Authentication, Razorpay Integration, Spring Security, AWS EC2, AWS RDS, and Netlify.
